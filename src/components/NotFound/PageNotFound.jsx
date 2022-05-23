@@ -14,6 +14,7 @@ const PageNotFound = () => {
           src="/assets/images/page_not_found.svg"
           alt="Page Not Found"
           className="rounded square"
+          loading="lazy"
         />
       </div>
     </div>
