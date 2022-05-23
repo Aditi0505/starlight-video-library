@@ -1,0 +1,23 @@
+* {
+  overflow-x: hidden;
+}
+
+.img-content {
+  height: 70vh;
+  width: 100vw;
+}
+
+.overlay {
+  background-color: transparent;
+  padding: 2rem;
+  color: var(--accent1);
+}
+
+.flex-center,
+.gap {
+  gap: 4rem;
+}
+
+.card {
+  margin-bottom: 5rem;
+}
