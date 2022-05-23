@@ -1,0 +1,13 @@
+.footer {
+    background-color: var(--secondary-color);
+    position: fixed;
+    bottom: 0;
+    height: 5vh;
+    overflow:hidden;
+  }
+  .full-width {
+    width: 100%;
+  }
+  .primary-color{
+    color: var(--primary-color)
+  }
