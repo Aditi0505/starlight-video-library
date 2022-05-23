@@ -1,1 +1,5 @@
+@import "react-toastify/dist/ReactToastify.css";
+@import url("../src/components/Footer/Footer.css");
+@import url("../src/components/Navbar/Navbar.css");
+@import url("../src/components/NotFound/PageNotFound.css");
 
