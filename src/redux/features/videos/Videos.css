@@ -1,0 +1,24 @@
+.outer-wrapper {
+  flex-direction: column;
+  gap: var(--sm-size);
+  padding: var(--sm-size);
+}
+
+.video-listing {
+  margin-top: 10rem;
+  margin-left: 25rem;
+}
+
+.display-screen {
+  margin: 6.8rem 0 5.2rem 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: var(--sm-size);
+}
+
+.chip-container {
+  display: flex;
+  flex-wrap: wrap;
+}
