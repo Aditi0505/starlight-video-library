@@ -8,20 +8,26 @@ import { v4 as uuid } from "uuid";
 export const categories = [
   {
     _id: uuid(),
-    categoryName: "Computer Programming",
-    description:
-      "Computer programming is the process of designing and building an executable computer program to accomplish a specific computing",
+    categoryName: "Music Video",
+    description: "Taylor Swift's music videos",
+    image: "/assets/images/taylor-swift.jpg",
   },
   {
     _id: uuid(),
-    categoryName: "Frontend Development",
-    description:
-      "Front-end web development, also known as client-side development is the practice of producing HTML, CSS and JavaScript for a website or Web Application",
+    categoryName: "Lyric Video",
+    description: "Taylor Swift's lyric videos",
+    image: "/assets/images/banner.jpg",
   },
   {
     _id: uuid(),
-    categoryName: "Backend Development",
-    description:
-      "Backend Development is also known as server-side development. It is everything that the users don't see and contains behind-the-scenes activities that occur when performing any action on a website.",
+    categoryName: "Interview",
+    description: "Taylor Swift's interviews",
+    image: "/assets/images/interview1.jpg",
+  },
+  {
+    _id: uuid(),
+    categoryName: "Concert",
+    description: "Taylor Swift's concert videos",
+    image: "/assets/images/concert.jpg",
   },
 ];
