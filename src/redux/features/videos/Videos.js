@@ -26,9 +26,9 @@ const Videos = () => {
   }, [dispatch]);
 
   useEffect(() => {
-    const categoryName = location.state;
+    const categoryName = location.state ?? currentCategory;
     dispatch(setCurrentCategory(categoryName));
-  }, [location.state, dispatch]);
+  }, [location.state, currentCategory, dispatch]);
 
   const clickHandler = (category) => {
     dispatch(setCurrentCategory(category));
