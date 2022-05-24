@@ -1,4 +1,12 @@
-.loader{
-    position: fixed;
-    z-index:2;
-  }
+.loader {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: fixed;
+  top: 5rem;
+  z-index: 2;
+}
+
+.home-loader {
+  top: 20rem;
+}
