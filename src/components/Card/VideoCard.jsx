@@ -1,17 +1,19 @@
 import { Link } from "react-router-dom";
 
 const VideoCard = ({ videoDetails }) => {
-  const { title, videoBy, views, duration, thumbnail } = videoDetails;
+  const { _id, title, videoBy, views, duration, thumbnail } = videoDetails;
   return (
     <div className="card">
       <div className="card-inner-container">
         <div className="card-image">
-          <img
-            src={thumbnail}
-            alt="Lover-music-video"
-            className="img"
-            loading="lazy"
-          />
+          <Link to={`/video/${_id}`}>
+            <img
+              src={thumbnail}
+              alt="Lover-music-video"
+              className="img"
+              loading="lazy"
+            />
+          </Link>
         </div>
         <div className="card-body">
           <div className="card-desc ft-bolder text-left">{title}</div>

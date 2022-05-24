@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 
 const CategoryCard = ({ image, title }) => {
   return (
-    <Link to="/feed">
+    <Link to="/feed" state={title}>
       <div className="card">
         <div className="card-inner-container">
           <div className="card-image-overlay">
