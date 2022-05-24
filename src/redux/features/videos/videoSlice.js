@@ -4,7 +4,7 @@ const initialState = {
   videos: [],
   categories: [],
   currentVideo: null,
-  currentCategory: "All",
+  currentCategory: null,
   searchQuery: "",
   isLoading: true,
 };

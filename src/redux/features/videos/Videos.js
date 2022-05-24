@@ -1,5 +1,4 @@
 import { useDispatch, useSelector } from "react-redux";
-import { useLocation } from "react-router-dom";
 import { useEffect } from "react";
 import { Loader, Sidebar, VideoCard, Chip } from "../../../components";
 import {
@@ -13,7 +12,6 @@ const Videos = () => {
   const { videos, categories, isLoading, currentCategory, searchQuery } =
     useSelector((store) => store.video);
   const dispatch = useDispatch();
-  const location = useLocation();
 
   useEffect(() => {
     const data = dispatch(getVideos());
@@ -26,9 +24,9 @@ const Videos = () => {
   }, [dispatch]);
 
   useEffect(() => {
-    const categoryName = location.state ?? currentCategory;
+    const categoryName = currentCategory;
     dispatch(setCurrentCategory(categoryName));
-  }, [location.state, currentCategory, dispatch]);
+  }, [currentCategory, dispatch]);
 
   const clickHandler = (category) => {
     dispatch(setCurrentCategory(category));
