@@ -1,0 +1,9 @@
+.grid-container-col{
+    height: 100vh;
+}
+.column{
+    background-color: transparent;
+}
+.page-heading{
+color:var(--accent-pink)
+}

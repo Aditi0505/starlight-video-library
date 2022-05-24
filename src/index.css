@@ -1,1 +1,74 @@
+@import "react-toastify/dist/ReactToastify.css";
+@import url("../src/components/Footer/Footer.css");
+@import url("../src/components/Navbar/Navbar.css");
+@import url("../src/components/NotFound/PageNotFound.css");
+@import url("../src/components/Loader/Loader.css");
+@import url("../src/components/Card/VideoCard.css");
+@import url("../src/components/Sidebar/Sidebar.css");
+@import url("../src/redux/features/videos/Home.css");
+@import url("../src/redux/features/videos/Videos.css");
+@import url("../src/components/Chip/Chip.css");
+/* spacing utilities */
 
+.full-width {
+  width: 100%;
+}
+
+.margin-left {
+  margin-left: 4.8rem;
+}
+
+.margin-right {
+  margin-right: 4.8rem;
+}
+
+.margin {
+  margin: 1.6rem;
+}
+
+body {
+  font-family: var(--body-font);
+}
+
+@media screen and (max-width: 35em) {
+  html {
+    font-size: 35%;
+  }
+  .category-card {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+  }
+  .img-content {
+    height: 30vh;
+    width: 100vw;
+  }
+  .sidebar-wrapper {
+    display: none;
+  }
+  .chip-container {
+    margin-top: 20rem;
+    flex-wrap: wrap;
+  }
+}
+
+@media screen and (max-width: 60em) {
+  html {
+    font-size: 35%;
+  }
+  .video-listing {
+    margin-top: -2rem;
+    margin-left: 0;
+  }
+  .display-screen {
+    margin-top: 12rem;
+    width: 100%;
+  }
+  .sidebar-wrapper {
+    display: none;
+  }
+  .chip-container {
+    margin-top: 20rem;
+    flex-wrap: wrap;
+  }
+}

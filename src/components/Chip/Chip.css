@@ -1,0 +1,12 @@
+.chip {
+  border: 1px solid var(--secondary-color);
+  border-radius: 4rem;
+  font-size: var(--sm-size);
+  padding: 1rem;
+  width: 15rem;
+}
+
+.chip:hover {
+  background-color: var(--accent-light-gray);
+  cursor: pointer;
+}
