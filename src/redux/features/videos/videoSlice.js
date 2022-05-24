@@ -89,7 +89,6 @@ const videoSlice = createSlice({
     },
     [getSingleVideo.rejected]: (state, action) => {
       state.isLoading = false;
-      console.log(action);
     },
   },
 });
