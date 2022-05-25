@@ -63,9 +63,9 @@ const videoSlice = createSlice({
     [getVideos.pending]: (state) => {
       state.isLoading = true;
     },
-    [getVideos.fulfilled]: (state, action) => {
+    [getVideos.fulfilled]: (state, { payload }) => {
       state.isLoading = false;
-      state.videos = action.payload.videos;
+      state.videos = payload.videos;
     },
     [getVideos.rejected]: (state) => {
       state.isLoading = false;
@@ -73,9 +73,9 @@ const videoSlice = createSlice({
     [getVideoCategories.pending]: (state) => {
       state.isLoading = true;
     },
-    [getVideoCategories.fulfilled]: (state, action) => {
+    [getVideoCategories.fulfilled]: (state, { payload }) => {
       state.isLoading = false;
-      state.categories = action.payload.categories;
+      state.categories = payload.categories;
     },
     [getVideoCategories.rejected]: (state) => {
       state.isLoading = false;
@@ -83,11 +83,11 @@ const videoSlice = createSlice({
     [getSingleVideo.pending]: (state) => {
       state.isLoading = true;
     },
-    [getSingleVideo.fulfilled]: (state, action) => {
+    [getSingleVideo.fulfilled]: (state, { payload }) => {
       state.isLoading = false;
-      state.currentVideo = action.payload.video;
+      state.currentVideo = payload.video;
     },
-    [getSingleVideo.rejected]: (state, action) => {
+    [getSingleVideo.rejected]: (state) => {
       state.isLoading = false;
     },
   },

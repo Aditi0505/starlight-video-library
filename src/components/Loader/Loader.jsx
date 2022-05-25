@@ -10,7 +10,7 @@ const Loader = () => {
           : `grid-container-col column loader`
       }
     >
-      <img src={"/assets/gif/giphy.gif"} alt="loading..." loading="lazy" />
+      <img src={"/assets/gif/loader.gif"} alt="loading..." loading="lazy" />
     </div>
   );
 };

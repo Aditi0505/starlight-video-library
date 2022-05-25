@@ -6,13 +6,17 @@ import {
   getVideos,
   setCurrentCategory,
 } from "./videoSlice";
-import { getCategorizedVideos, getSearchedVideos } from "../../../utils";
+import {
+  getCategorizedVideos,
+  getSearchedVideos,
+  setTitle,
+} from "../../../utils";
 import { toast } from "react-toastify";
 const Videos = () => {
   const { videos, categories, isLoading, currentCategory, searchQuery } =
     useSelector((store) => store.video);
   const dispatch = useDispatch();
-
+  setTitle("StarLight | Videos");
   useEffect(() => {
     const data = dispatch(getVideos());
     data.unwrap().catch((e) => toast.error(e));
