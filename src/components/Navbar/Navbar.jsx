@@ -1,7 +1,14 @@
+import { useDispatch, useSelector } from "react-redux";
 import { Link, NavLink, useLocation } from "react-router-dom";
+import { setSearchQuery } from "../../redux/features/videos/videoSlice";
 import { Button } from "../index";
 const NavBar = () => {
   const location = useLocation();
+  const { searchQuery } = useSelector((store) => store.video);
+  const dispatch = useDispatch();
+  const handleSearchInput = (e) => {
+    dispatch(setSearchQuery(e.target.value));
+  };
   return (
     <div>
       <header className="desktop-navigation position-fixed">
@@ -26,7 +33,8 @@ const NavBar = () => {
             name="search"
             id="search"
             placeholder="🔍 Search"
-            value=""
+            value={searchQuery}
+            onChange={(e) => handleSearchInput(e)}
           />
         )}
         <ul className="nav-icons">

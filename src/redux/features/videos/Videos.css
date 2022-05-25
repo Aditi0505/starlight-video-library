@@ -22,3 +22,66 @@
   display: flex;
   flex-wrap: wrap;
 }
+
+.single-video-wrapper {
+  flex-wrap: wrap;
+  gap: var(--sm-size);
+  width: 100%;
+}
+
+.single-video-container {
+  width: 80%;
+  height: 40rem;
+  border-radius: 2rem;
+}
+
+.video-detail {
+  width: 30rem;
+  width: 80%;
+}
+
+.flex-start-col {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  width: 80%;
+}
+
+.flex-start {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  width: 80%;
+}
+
+.video-icon {
+  width: 100%;
+}
+
+.video-span {
+  width: 60rem;
+}
+
+.video-icon-set {
+  width: 28rem;
+}
+
+.inner-icon {
+  width: 12rem;
+}
+
+.inner-action-icon {
+  width: 29rem;
+}
+.video-actions {
+  width: 60rem;
+  cursor: pointer;
+}
+
+.flex-end {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  width: 80%;
+}

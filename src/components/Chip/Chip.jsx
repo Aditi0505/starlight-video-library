@@ -1,6 +1,15 @@
-const Chip = ({ category }) => {
+const Chip = ({ category, matchCategory, handleClick }) => {
   return (
-    <div className="chip text-center ft-bolder">
+    <div
+      onClick={() => handleClick(category)}
+      className={
+        category === matchCategory
+          ? "chip-selected text-center ft-bolder"
+          : category === "All" && !matchCategory
+          ? "chip-selected text-center ft-bolder"
+          : "chip text-center ft-bolder"
+      }
+    >
       <span>{category}</span>
     </div>
   );

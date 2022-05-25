@@ -1,6 +1,12 @@
+import { useDispatch } from "react-redux";
+import { setCurrentCategory } from "../../redux/features/videos/videoSlice";
 import { Button } from "../Button/Button";
 
 const Banner = () => {
+  const { dispatch } = useDispatch();
+  const handleClick = (category) => {
+    dispatch(setCurrentCategory(category));
+  };
   return (
     <div>
       <img
@@ -14,7 +20,11 @@ const Banner = () => {
         <p className="text-lg ft-bolder">Watch the latest Video now</p>
         <div>
           <ul className="nav-icons">
-            <Button buttonState={"Watch Now"} route="feed" />
+            <Button
+              buttonState={"Watch Now"}
+              route="feed"
+              onClick={handleClick}
+            />
           </ul>
         </div>
       </div>

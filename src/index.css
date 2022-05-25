@@ -25,14 +25,20 @@
 .margin {
   margin: 1.6rem;
 }
-
+.margin-bottom {
+  margin-bottom: 7rem;
+}
 body {
   font-family: var(--body-font);
 }
 
+.toastify-container > div {
+  font-size: var(--sm-size);
+  font-family: var(--body-font);
+}
 @media screen and (max-width: 35em) {
   html {
-    font-size: 35%;
+    font-size: 10px;
   }
   .category-card {
     display: flex;
@@ -40,7 +46,7 @@ body {
     gap: 2rem;
   }
   .img-content {
-    height: 30vh;
+    height: 40vh;
     width: 100vw;
   }
   .sidebar-wrapper {
@@ -49,6 +55,9 @@ body {
   .chip-container {
     margin-top: 20rem;
     flex-wrap: wrap;
+  }
+  .home-loader {
+    top: 20rem;
   }
 }
 
@@ -60,7 +69,8 @@ body {
     margin-top: -2rem;
     margin-left: 0;
   }
-  .display-screen {
+  .display-screen,
+  .single-video-wrapper {
     margin-top: 12rem;
     width: 100%;
   }
@@ -70,5 +80,8 @@ body {
   .chip-container {
     margin-top: 20rem;
     flex-wrap: wrap;
+  }
+  .home-loader {
+    top: 35rem;
   }
 }

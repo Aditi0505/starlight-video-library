@@ -1,8 +1,8 @@
 import { Link } from "react-router-dom";
 
-const CategoryCard = ({ image, title }) => {
+const CategoryCard = ({ image, title, handleClick }) => {
   return (
-    <Link to="/feed">
+    <Link to="/feed" state={title} onClick={() => handleClick(title)}>
       <div className="card">
         <div className="card-inner-container">
           <div className="card-image-overlay">
