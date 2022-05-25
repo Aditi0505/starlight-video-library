@@ -7,11 +7,13 @@
 }
 
 .chip:hover {
+  color: var(--option);
   background-color: var(--accent-light-gray);
   cursor: pointer;
 }
 
 .chip-selected {
+  color: var(--option);
   background-color: var(--accent-light-gray);
   border: 1px solid var(--secondary-color);
   border-radius: 4rem;

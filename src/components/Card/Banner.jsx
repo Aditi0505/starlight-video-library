@@ -15,7 +15,7 @@ const Banner = () => {
         className="img img-content"
         loading="lazy"
       />
-      <div className="flex-column overlay gap">
+      <div className="flex-column overlay gap banner-heading">
         <h1>TAYLOR SWIFT: All Too Well</h1>
         <p className="text-lg ft-bolder">Watch the latest Video now</p>
         <div>

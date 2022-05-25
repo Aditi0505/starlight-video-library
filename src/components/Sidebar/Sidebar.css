@@ -20,15 +20,16 @@
   margin-top: 1rem;
   width: 100%;
   padding: 2rem;
-  color: var(--accent-black);
+  color: var(--accent1);
 }
 .sidebar-list-item:hover {
   background-color: var(--accent-light-gray);
   border-radius: 1rem;
   cursor: pointer;
+  color: var(--option);
 }
 .tab-active .sidebar-list-item {
-  color: var(--accent-black);
+  color: var(--option);
   background-color: var(--accent-light-gray);
   border-radius: 1rem;
   cursor: pointer;
