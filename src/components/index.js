@@ -1,3 +1,5 @@
+export { Input } from "./Input/Input";
+export { RequiresAuth } from "./Auth/RequiresAuth";
 export { CategoryCard } from "./Card/CategoryCard";
 export { Sidebar } from "./Sidebar/Sidebar";
 export { VideoCard } from "./Card/VideoCard";
