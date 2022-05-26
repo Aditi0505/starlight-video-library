@@ -35,7 +35,6 @@ const Signup = () => {
   };
   const validateFields = (password, confirmPassword) => {
     if (password && confirmPassword) {
-      console.log(password);
       return password === confirmPassword;
     }
   };
@@ -44,20 +43,15 @@ const Signup = () => {
   };
   const validateHandler = () => {
     if (!userName && !password && !confirmPassword) {
-      console.log(confirmPassword, password);
       toast.info("Please enter valid credentials");
     } else if (!confirmPassword && !password) {
-      console.log(confirmPassword, password);
       toast.info("Please enter valid password");
     } else if (!confirmPassword && password) {
-      console.log(confirmPassword, password);
       toast.info("Please confirm password");
     } else if (!userName) {
-      console.log(userName);
       toast.info("Please enter valid username");
     } else {
       const isValid = validateFields(password, confirmPassword);
-      console.log(password === confirmPassword, isValid);
       if (isValid) {
         const user = {
           email: userName,
@@ -65,7 +59,6 @@ const Signup = () => {
         };
         {
           const data = dispatch(signUpUser(user));
-          console.log(data);
           data
             .then((res) =>
               res.error
