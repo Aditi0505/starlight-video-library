@@ -45,7 +45,7 @@ const NavBar = () => {
           />
         )}
         <ul className="nav-icons">
-          {true ? (
+          {theme === "light" ? (
             <i
               className="fas fa-sun nav-icon toggle-btn"
               onClick={() => toggleThemeHandler("light")}
@@ -58,7 +58,9 @@ const NavBar = () => {
           )}
           {encodedToken ? (
             <Button buttonState={"Logout"} route="" />
-          ) : location.pathname === "/" ? (
+          ) : location.pathname === "/" ||
+            location.pathname === "/feed" ||
+            location.pathname.includes("/video") ? (
             <Button buttonState={"Login"} route="login" />
           ) : location.pathname === "/login" ? (
             <Button buttonState={"Signup"} route="signup" />
