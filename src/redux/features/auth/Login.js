@@ -59,8 +59,8 @@ const Login = () => {
     }
   };
   return (
-    <main className="outer-wrapper flex-spbt">
-      <section className="screen flex-spbt">
+    <main className="outer-wrapper auth-wrapper flex-spbt">
+      <section className="screen flex-spbt login">
         <div className="form-container card-container-shadow">
           <div className="card-title">
             <h3>Login</h3>

@@ -80,7 +80,7 @@ const Signup = () => {
     localStorage.setItem("signup-token", encodedToken);
   }, [encodedToken]);
   return (
-    <main className="outer-wrapper flex-spbt">
+    <main className="outer-wrapper auth-wrapper flex-spbt">
       <section className="screen flex-spbt sign-up">
         <div className="form-container card-container-shadow">
           <div className="card-title">

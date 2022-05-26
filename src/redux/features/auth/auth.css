@@ -9,9 +9,11 @@
   width: 30rem;
 }
 
-.sign-up {
-  margin-top: 6rem;
+.sign-up,
+.login {
+  margin-top: 3rem;
   margin-bottom: 0;
+  height: 100vh;
 }
 
 .showPassword {
@@ -27,5 +29,7 @@
 .screen {
   flex-wrap: wrap;
   gap: var(--sm-size);
-  margin: 10rem 0 5.2rem 0;
+}
+.auth-wrapper {
+  height: 100vh;
 }
