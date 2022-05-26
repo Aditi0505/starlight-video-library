@@ -2,8 +2,8 @@ import Mockman from "mockman-js";
 import { useSelector } from "react-redux";
 import { Route, Routes } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
-import { Footer, NavBar, PageNotFound, RequiresAuth } from "./components";
-import { Home, Playlist, SingleVideo, Videos, Login, Signup } from "./redux";
+import { Footer, NavBar, PageNotFound } from "./components";
+import { Home, SingleVideo, Videos, Login, Signup } from "./redux";
 
 const App = () => {
   const { theme } = useSelector((store) => store.auth);
