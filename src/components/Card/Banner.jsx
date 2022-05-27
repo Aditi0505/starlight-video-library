@@ -8,7 +8,7 @@ const Banner = () => {
     dispatch(setCurrentCategory(category));
   };
   return (
-    <div>
+    <div className="relative">
       <img
         src="/assets/images/vinyl.jpg"
         alt="video-banner"

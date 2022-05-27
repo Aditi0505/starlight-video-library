@@ -15,7 +15,7 @@ const Home = () => {
     dispatch(setCurrentCategory(category));
   };
   return (
-    <div>
+    <div className="full-height">
       <Banner />
       <h2 className="padding-sm">Categories</h2>
       <div className="flex-center padding-sm category-card">

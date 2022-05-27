@@ -1,3 +1,4 @@
+export { NoData } from "./NoData/NoData";
 export { Input } from "./Input/Input";
 export { RequiresAuth } from "./Auth/RequiresAuth";
 export { CategoryCard } from "./Card/CategoryCard";
