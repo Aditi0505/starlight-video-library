@@ -67,7 +67,7 @@ const Videos = () => {
             Clear
           </button>
         </div>
-        <div>
+        <>
           <div className="display-screen">
             {isLoading ? (
               <Loader />
@@ -79,7 +79,7 @@ const Videos = () => {
               <NoData />
             )}
           </div>
-        </div>
+        </>
       </main>
     </>
   );
