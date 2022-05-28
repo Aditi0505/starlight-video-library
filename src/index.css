@@ -10,6 +10,8 @@
 @import url("../src/components/Chip/Chip.css");
 @import url("../src/redux/features/auth/auth.css");
 @import url("../src/components/Card/Banner.css");
+@import url("../src/redux/features/watchLater/watchLater.css");
+@import url("../src/components/NoData/NoData.css");
 .light-mode {
   --primary-color: #fefefe;
   --secondary-color: #525252;
@@ -19,6 +21,8 @@
   --disable: #fceeee;
   --option: #1e1e1e;
   --hover: #d62929;
+  background-color: var(--primary-color);
+  color: var(--accent1);
 }
 .dark-mode {
   --primary-color: #1a202c;
@@ -38,7 +42,9 @@
 .full-width {
   width: 100%;
 }
-
+.width-7 {
+  width: 7rem;
+}
 .margin-left {
   margin-left: 4.8rem;
 }
@@ -54,9 +60,8 @@
   margin-bottom: 7rem;
 }
 body {
-  font-family: var(--body-font);
+  font-family: var(--body-font);  
 }
-
 .toastify-container > div {
   font-size: var(--sm-size);
   font-family: var(--body-font);
@@ -84,6 +89,9 @@ body {
   .home-loader {
     top: 20rem;
   }
+  .video-listing {
+    height: 100vh;
+  }
 }
 
 @media screen and (max-width: 60em) {
@@ -93,6 +101,7 @@ body {
   .video-listing {
     margin-top: -2rem;
     margin-left: 0;
+    height: 100vh;
   }
   .display-screen,
   .single-video-wrapper {
