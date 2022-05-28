@@ -1,7 +1,34 @@
-import { Link } from "react-router-dom";
-
+import { useDispatch, useSelector } from "react-redux";
+import { Link, useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
+import {
+  addtoWatchLater,
+  removeFromWatchLater,
+} from "../../redux/features/playlist/playlistSlice";
 const VideoCard = ({ videoDetails }) => {
   const { _id, title, videoBy, views, duration, thumbnail } = videoDetails;
+  const dispatch = useDispatch();
+  const { encodedToken } = useSelector((store) => store.auth);
+  const navigate = useNavigate();
+  const addToWatchlaterHandler = (videoDetails) => {
+    if (!encodedToken) {
+      navigate("/login");
+    } else {
+      dispatch(addtoWatchLater(videoDetails))
+        .then((res) => toast.success("Video added to Watch Later!"))
+        .catch((error) => toast.error(error));
+    }
+  };
+  const removeFromWatchlaterHandler = (id) => {
+    if (!encodedToken) {
+      navigate("/login");
+    } else {
+      dispatch(removeFromWatchLater(id))
+        .then((res) => toast.success("Video removed from Watch Later!"))
+        .catch((error) => toast.error(error));
+    }
+  };
+  const { watchLater } = useSelector((store) => store.playlist);
   return (
     <div className="card">
       <div className="card-inner-container">
@@ -22,16 +49,19 @@ const VideoCard = ({ videoDetails }) => {
           </div>
         </div>
       </div>
-
       <div className="icons">
-        {false ? (
-          <Link to="/cart" className="flex-center full-width">
-            <button className="btn-primary btn flex-center full-width padding-xs margin">
-              Remove From Watch Later
-            </button>
-          </Link>
+        {watchLater.some((video) => video._id === _id) ? (
+          <button
+            className="btn-secondary btn flex-center full-width padding-xs margin"
+            onClick={() => removeFromWatchlaterHandler(_id)}
+          >
+            Remove From Watch Later
+          </button>
         ) : (
-          <button className="btn-primary btn flex-center full-width padding-xs margin">
+          <button
+            className="btn-primary btn flex-center full-width padding-xs margin"
+            onClick={() => addToWatchlaterHandler(videoDetails)}
+          >
             Add To Watch Later
           </button>
         )}

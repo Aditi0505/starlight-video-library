@@ -1,8 +1,12 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { toast } from "react-toastify";
 import { Loader, Sidebar } from "../../../components";
+import {
+  addtoWatchLater,
+  removeFromWatchLater,
+} from "../playlist/playlistSlice";
 import { getSingleVideo } from "./videoSlice";
 
 const SingleVideo = () => {
@@ -11,12 +15,31 @@ const SingleVideo = () => {
   const dispatch = useDispatch();
   const { _id, views, title, duration, avatar, description, videoBy, alt } =
     currentVideo ?? {};
-
+  const { watchLater } = useSelector((store) => store.playlist);
+  const { encodedToken } = useSelector((store) => store.auth);
+  const navigate = useNavigate();
   useEffect(() => {
     const data = dispatch(getSingleVideo(videoId));
     data.unwrap().catch((error) => toast.error(error));
   }, [videoId, dispatch]);
-
+  const removeFromWatchlaterHandler = (id) => {
+    if (!encodedToken) {
+      navigate("/login");
+    } else {
+      dispatch(removeFromWatchLater(id))
+        .then((res) => toast.success("Video removed from Watch Later!"))
+        .catch((error) => toast.error(error));
+    }
+  };
+  const addToWatchlaterHandler = (videoDetails) => {
+    if (!encodedToken) {
+      navigate("/login");
+    } else {
+      dispatch(addtoWatchLater(videoDetails))
+        .then((res) => toast.success("Video added to Watch Later!"))
+        .catch((error) => toast.error(error));
+    }
+  };
   return (
     <>
       <Sidebar />
@@ -56,7 +79,7 @@ const SingleVideo = () => {
                 </div>
               </section>
               <section className="flex-end">
-                <div className="flex-spbt video-actions">
+                <div className="flex-center video-actions">
                   <span className="ft-bolder text-sm text-right inner-icon">
                     <i className="far fa-thumbs-up"></i>
                     Like
@@ -65,10 +88,23 @@ const SingleVideo = () => {
                     <i className="far fa-list-alt"></i>
                     <span> Add to PlayList</span>
                   </div>
-                  <span className="ft-bolder text-sm text-right inner-action-icon">
-                    <i className="far fa-clock"></i>
-                    Add to Watch Later
-                  </span>
+                  {watchLater.some((video) => video._id === videoId) ? (
+                    <span
+                      className="ft-bolder text-sm text-right inner-action-icon"
+                      onClick={() => removeFromWatchlaterHandler(videoId)}
+                    >
+                      <i className="fas fa-check-circle"></i>
+                      Watch Later
+                    </span>
+                  ) : (
+                    <span
+                      className="ft-bolder text-sm text-right inner-action-icon"
+                      onClick={() => addToWatchlaterHandler(currentVideo)}
+                    >
+                      <i className="far fa-clock"></i>
+                      Watch Later
+                    </span>
+                  )}
                 </div>
               </section>
               <section className="flex-start gap margin-bottom">
