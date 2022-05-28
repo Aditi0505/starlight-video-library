@@ -1,15 +1,18 @@
-.nav-link{
-    color: var(--primary-color);
-    font-family: var(--body-font);
-    font-weight: var(--regular);
-    font-size: var(--md-size);
+.nav-link {
+  color: var(--primary-color);
+  font-family: var(--body-font);
+  font-weight: var(--regular);
+  font-size: var(--md-size);
 }
 
-.active .nav-link{
-    color: var(--accent-light-red);
+.active .nav-link {
+  color: var(--accent-light-red);
 }
 
-.toggle-btn{
-    font-size: var(--md-size);
-    cursor: pointer;
+.toggle-btn {
+  font-size: var(--md-size);
+  cursor: pointer;
+}
+.dark-active .nav-link {
+  color: var(--cta);
 }

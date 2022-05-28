@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
-import { Loader, Sidebar, VideoCard, Chip } from "../../../components";
+import { Loader, Sidebar, VideoCard, Chip, NoData } from "../../../components";
 import {
   getVideoCategories,
   getVideos,
@@ -47,7 +47,7 @@ const Videos = () => {
   return (
     <>
       <Sidebar />
-      <main className="outer-wrapper flex-spbt video-listing">
+      <main className="outer-wrapper video-listing">
         <div className="flex-center chip-container">
           <Chip
             category="All"
@@ -76,12 +76,7 @@ const Videos = () => {
                 <VideoCard videoDetails={video} key={video._id} />
               ))
             ) : (
-              <img
-                src="/assets/images/empty.svg"
-                className="responsive"
-                loading="lazy"
-                alt="No data"
-              />
+              <NoData />
             )}
           </div>
         </div>

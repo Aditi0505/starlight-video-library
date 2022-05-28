@@ -1,13 +1,18 @@
 import { useDispatch, useSelector } from "react-redux";
 import { Link, NavLink, useLocation } from "react-router-dom";
+import { toggleTheme } from "../../redux/features/auth/authSlice";
 import { setSearchQuery } from "../../redux/features/videos/videoSlice";
 import { Button } from "../index";
 const NavBar = () => {
   const location = useLocation();
   const { searchQuery } = useSelector((store) => store.video);
+  const { encodedToken, theme } = useSelector((store) => store.auth);
   const dispatch = useDispatch();
   const handleSearchInput = (e) => {
     dispatch(setSearchQuery(e.target.value));
+  };
+  const toggleThemeHandler = (theme) => {
+    dispatch(toggleTheme(theme));
   };
   return (
     <div>
@@ -21,7 +26,9 @@ const NavBar = () => {
           <div className="gap">
             <NavLink
               to="/feed"
-              className={({ isActive }) => (isActive ? "active" : "")}
+              className={({ isActive }) =>
+                isActive ? (theme === "light" ? "active" : "dark-active") : ""
+              }
             >
               <p className="nav-link">Feed</p>
             </NavLink>
@@ -38,12 +45,22 @@ const NavBar = () => {
           />
         )}
         <ul className="nav-icons">
-          {true ? (
-            <i className="fas fa-sun nav-icon toggle-btn"></i>
+          {theme === "light" ? (
+            <i
+              className="fas fa-sun nav-icon toggle-btn"
+              onClick={() => toggleThemeHandler("light")}
+            ></i>
           ) : (
-            <i className="fas fa-moon nav-icon toggle-btn"></i>
+            <i
+              className="fas fa-moon nav-icon toggle-btn"
+              onClick={() => toggleThemeHandler("dark")}
+            ></i>
           )}
-          {location.pathname === "/" ? (
+          {encodedToken ? (
+            <Button buttonState={"Logout"} route="" />
+          ) : location.pathname === "/" ||
+            location.pathname === "/feed" ||
+            location.pathname.includes("/video") ? (
             <Button buttonState={"Login"} route="login" />
           ) : location.pathname === "/login" ? (
             <Button buttonState={"Signup"} route="signup" />

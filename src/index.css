@@ -8,6 +8,31 @@
 @import url("../src/redux/features/videos/Home.css");
 @import url("../src/redux/features/videos/Videos.css");
 @import url("../src/components/Chip/Chip.css");
+@import url("../src/redux/features/auth/auth.css");
+@import url("../src/components/Card/Banner.css");
+.light-mode {
+  --primary-color: #fefefe;
+  --secondary-color: #525252;
+  --cta: #c42625;
+  --accent1: #1e1e1e;
+  --accent2: #c5c5c5;
+  --disable: #fceeee;
+  --option: #1e1e1e;
+  --hover: #d62929;
+}
+.dark-mode {
+  --primary-color: #1a202c;
+  --secondary-color: #c5c5c5;
+  --cta: #c42625;
+  --accent1: #fefefe;
+  --accent2: #525252;
+  --disable: #fceeee;
+  --hover: #d62929;
+  --option: #1e1e1e;
+  background-color: var(--primary-color);
+  color: var(--accent1);
+}
+
 /* spacing utilities */
 
 .full-width {
