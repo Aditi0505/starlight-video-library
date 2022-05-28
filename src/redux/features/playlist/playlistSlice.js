@@ -27,21 +27,6 @@ export const addtoWatchLater = createAsyncThunk(
     }
   }
 );
-export const getWatchLater = createAsyncThunk(
-  "watchLater/getWatchLater",
-  async (_, { rejectWithValue }) => {
-    try {
-      const response = await axios.get("/api/user/watchlater", {
-        headers: {
-          authorization: localStorage.getItem("login-token"),
-        },
-      });
-      return response.data;
-    } catch (error) {
-      return rejectWithValue("Cannot get watch later videos right now!");
-    }
-  }
-);
 export const removeFromWatchLater = createAsyncThunk(
   "watchLater/removeFromWatchLater",
   async (id, { rejectWithValue }) => {
@@ -69,16 +54,6 @@ const playlistSlice = createSlice({
       state.isLoading = false;
     },
     [addtoWatchLater.fulfilled]: (state, { payload }) => {
-      state.watchLater = payload.watchlater;
-      state.isLoading = false;
-    },
-    [getWatchLater.pending]: (state) => {
-      state.isLoading = true;
-    },
-    [getWatchLater.rejected]: (state) => {
-      state.isLoading = false;
-    },
-    [getWatchLater.fulfilled]: (state, { payload }) => {
       state.watchLater = payload.watchlater;
       state.isLoading = false;
     },
