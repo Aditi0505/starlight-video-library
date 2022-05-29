@@ -3,10 +3,10 @@ import axios from "axios";
 const initialState = {
   videos: [],
   categories: [],
-  currentVideo: null,
+  history: [],
   currentCategory: null,
   searchQuery: "",
-  isLoading: true,
+  isLoading: false,
 };
 
 export const getVideos = createAsyncThunk(
@@ -35,19 +35,74 @@ export const getVideoCategories = createAsyncThunk(
   }
 );
 
-export const getSingleVideo = createAsyncThunk(
-  "videos/getSingleVideo",
-  async (videoId, { rejectWithValue }) => {
+export const postHistory = createAsyncThunk(
+  "history/postHistory",
+  async (video, { rejectWithValue }) => {
     try {
-      const response = await axios.get(`/api/video/${videoId}`);
-      return response.data;
-    } catch (e) {
-      return rejectWithValue(
-        "Cannot display the video right now. Please try later!"
+      const response = await axios.post(
+        "/api/user/history",
+        { video },
+        {
+          headers: {
+            authorization: localStorage.getItem("login-token"),
+          },
+        }
       );
+      return response.data;
+    } catch (error) {
+      return rejectWithValue("Cannot add video to the history right now!");
     }
   }
 );
+
+export const removeFromHistory = createAsyncThunk(
+  "history/removeFromHistory",
+  async (id, { rejectWithValue }) => {
+    try {
+      const response = await axios.delete(`/api/user/history/${id}`, {
+        headers: {
+          authorization: localStorage.getItem("login-token"),
+        },
+      });
+      return response.data;
+    } catch (error) {
+      return rejectWithValue("Cannot delete video from the history right now!");
+    }
+  }
+);
+
+export const removeHistory = createAsyncThunk(
+  "history/removeHistory",
+  async (_, { rejectWithValue }) => {
+    try {
+      const response = await axios.delete("/api/user/history/all", {
+        headers: {
+          authorization: localStorage.getItem("login-token"),
+        },
+      });
+      return response.data;
+    } catch (error) {
+      return rejectWithValue("Cannot clear the history right now!");
+    }
+  }
+);
+
+export const getHistory = createAsyncThunk(
+  "history/getHistory",
+  async (_, { rejectWithValue }) => {
+    try {
+      const response = await axios.get("/api/user/history", {
+        headers: {
+          authorization: localStorage.getItem("login-token"),
+        },
+      });
+      return response.data;
+    } catch (error) {
+      return rejectWithValue("Cannot get history right now");
+    }
+  }
+);
+
 const videoSlice = createSlice({
   name: "videos",
   initialState,
@@ -80,17 +135,48 @@ const videoSlice = createSlice({
     [getVideoCategories.rejected]: (state) => {
       state.isLoading = false;
     },
-    [getSingleVideo.pending]: (state) => {
+    [postHistory.pending]: (state) => {
       state.isLoading = true;
     },
-    [getSingleVideo.fulfilled]: (state, { payload }) => {
+    [postHistory.fulfilled]: (state, { payload }) => {
       state.isLoading = false;
-      state.currentVideo = payload.video;
+      state.history = payload.history;
     },
-    [getSingleVideo.rejected]: (state) => {
+    [postHistory.rejected]: (state) => {
+      state.isLoading = false;
+    },
+    [removeFromHistory.pending]: (state) => {
+      state.isLoading = true;
+    },
+    [removeFromHistory.fulfilled]: (state, { payload }) => {
+      state.isLoading = false;
+      state.history = payload.history;
+    },
+    [removeFromHistory.rejected]: (state) => {
+      state.isLoading = false;
+    },
+    [removeHistory.pending]: (state) => {
+      state.isLoading = true;
+    },
+    [removeHistory.fulfilled]: (state, { payload }) => {
+      state.isLoading = false;
+      state.history = payload.history;
+    },
+    [removeHistory.rejected]: (state) => {
+      state.isLoading = false;
+    },
+    [getHistory.pending]: (state) => {
+      state.isLoading = true;
+    },
+    [getHistory.fulfilled]: (state, { payload }) => {
+      state.isLoading = false;
+      state.history = payload.history;
+    },
+    [getHistory.rejected]: (state) => {
       state.isLoading = false;
     },
   },
 });
+
 export const { setCurrentCategory, setSearchQuery } = videoSlice.actions;
 export default videoSlice.reducer;
