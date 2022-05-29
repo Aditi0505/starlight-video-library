@@ -1,45 +1,46 @@
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
-import { removeFromWatchLater } from "../../redux/features/playlist/playlistSlice";
 
-const HorizontalCard = ({ video }) => {
+const HorizontalCard = ({ video, removeAction, pageInfo }) => {
   const { encodedToken } = useSelector((store) => store.auth);
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const removeFromWatchlaterHandler = (id) => {
+  const removeHandler = (id) => {
     if (!encodedToken) {
       navigate("/login");
     } else {
-      dispatch(removeFromWatchLater(id))
-        .then((res) => toast.success("Video removed from Watch Later!"))
+      dispatch(removeAction(id))
+        .then((res) => toast.success(`Video removed from ${pageInfo}!`))
         .catch((error) => toast.error(error));
     }
   };
   return (
-    <div class="card-container-horizontal">
+    <div className="card-container-horizontal">
       <div
-        class="card-inner-container-horizontal"
+        className="card-inner-container-horizontal"
         onClick={() => navigate(`/video/${video._id}`)}
       >
-        <div class="card-image-horizontal flex-column flex-center">
+        <div className="card-image-horizontal flex-column flex-center">
           <img
             src={video.thumbnail}
             alt={video.alt}
-            class="img-horizontal-margin padding-xs"
+            className="img-horizontal-margin padding-xs"
           />
         </div>
-        <div class="flex-start padding-sm card-body-horizontal">
-          <div class="card-title-horizontal text-sm ft-bolder">
+        <div className="flex-start padding-sm card-body-horizontal">
+          <div className="card-title-horizontal text-sm ft-bolder">
             {video.videoBy}
           </div>
-          <div class="card-desc-horizontal text-sm ft-bold">{video.title}</div>
-          <div class="card-desc-horizontal text-sm">
+          <div className="card-desc-horizontal text-sm ft-bold">
+            {video.title}
+          </div>
+          <div className="card-desc-horizontal text-sm">
             {video.description.length <= 100
               ? video.description
               : `${video.description.substring(0, 100)}...`}
           </div>
-          <div class="card-desc-horizontal flex-spbt video-icon">
+          <div className="card-desc-horizontal flex-spbt video-icon">
             <span className="flex-spbt width-7">
               <i className="fas fa-eye"></i>
               {video.views}
@@ -52,13 +53,13 @@ const HorizontalCard = ({ video }) => {
           </div>
         </div>
       </div>
-      <div class="icons">
-        <span class="dismiss flex-center">
+      <div className="icons">
+        <span className="dismiss flex-center">
           <button
-            class="card-btn-close"
-            onClick={() => removeFromWatchlaterHandler(video._id)}
+            className="card-btn-close"
+            onClick={() => removeHandler(video._id)}
           >
-            <i class="close fas fa-times-circle"></i>
+            <i className="close fas fa-times-circle"></i>
           </button>
         </span>
       </div>
