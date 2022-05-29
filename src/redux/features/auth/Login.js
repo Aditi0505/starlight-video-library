@@ -58,6 +58,25 @@ const Login = () => {
         .catch((e) => toast.error(e));
     }
   };
+  const guestLoginHandler = () => {
+    const user = {
+      email: "aditi@gmail.com",
+      password: "aditi123",
+    };
+    setUserName(user.email);
+    setPassword(user.password);
+    const data = dispatch(loginUser(user));
+    data
+      .then((res) =>
+        res.error
+          ? toast.error(res.payload)
+          : toast.success("User logged in!") &&
+            navigate(location.state?.from?.pathname || "/", {
+              replace: true,
+            })
+      )
+      .catch((e) => toast.error(e));
+  };
   return (
     <main className="outer-wrapper auth-wrapper flex-spbt">
       <section className="screen flex-spbt login">
@@ -104,7 +123,13 @@ const Login = () => {
                 ></i>
               </div>
             )}
-
+            <button
+              type="button"
+              className="btn btn-primary margin-tb-sm"
+              onClick={guestLoginHandler}
+            >
+              Login To Guest Account
+            </button>
             <button
               type="button"
               className="btn btn-primary margin-tb-sm"
