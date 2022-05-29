@@ -9,12 +9,26 @@ import {
   RequiresAuth,
   Toast,
 } from "./components";
-import { Home, SingleVideo, Videos, Login, Signup, WatchLater } from "./redux";
+import {
+  Home,
+  SingleVideo,
+  Videos,
+  Login,
+  Signup,
+  WatchLater,
+  LikedVideo,
+  History,
+  Playlist,
+} from "./redux";
 
 const App = () => {
   const { theme } = useSelector((store) => store.auth);
   return (
-    <div className={theme === "light" ? "light-mode" : "dark-mode"}>
+    <div
+      className={`${
+        theme === "light" ? "light-mode" : "dark-mode"
+      } full-height`}
+    >
       <Toast />
       <NavBar />
       <Routes>
@@ -30,6 +44,30 @@ const App = () => {
           element={
             <RequiresAuth>
               <WatchLater />
+            </RequiresAuth>
+          }
+        />
+        <Route
+          path="/liked-videos"
+          element={
+            <RequiresAuth>
+              <LikedVideo />
+            </RequiresAuth>
+          }
+        />
+        <Route
+          path="/history"
+          element={
+            <RequiresAuth>
+              <History />
+            </RequiresAuth>
+          }
+        />
+        <Route
+          path="/playlist"
+          element={
+            <RequiresAuth>
+              <Playlist />
             </RequiresAuth>
           }
         />
