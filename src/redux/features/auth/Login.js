@@ -125,10 +125,10 @@ const Login = () => {
             )}
             <button
               type="button"
-              className="btn btn-primary margin-tb-sm"
+              className="btn btn-outline-primary margin-tb-sm"
               onClick={guestLoginHandler}
             >
-              Login To Guest Account
+              Login- Guest Account
             </button>
             <button
               type="button"
