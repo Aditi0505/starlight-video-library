@@ -1,6 +1,7 @@
 import { useSelector } from "react-redux";
 import { HorizontalCard, NoData, Sidebar } from "../../../components";
 import { setTitle } from "../../../utils";
+import { removeFromWatchLater } from "../playlist/playlistSlice";
 
 const WatchLater = () => {
   const { watchLater } = useSelector((store) => store.playlist);
@@ -22,9 +23,16 @@ const WatchLater = () => {
         <>
           <div className="display-screen">
             {watchLater.length > 0 ? (
-              watchLater.map((video) => <HorizontalCard video={video} />)
+              watchLater.map((video) => (
+                <HorizontalCard
+                  key={video._id}
+                  video={video}
+                  removeAction={removeFromWatchLater}
+                  pageInfo="Watch Later"
+                />
+              ))
             ) : (
-              <NoData />
+              <NoData pageInfo={"Watch Later"} />
             )}
           </div>
         </>
