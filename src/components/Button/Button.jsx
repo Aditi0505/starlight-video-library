@@ -11,11 +11,7 @@ const Button = ({ buttonState, route, handleClick }) => {
   return (
     <li>
       {buttonState === "Watch Now" ? (
-        <Link
-          to={`/${route}`}
-          className="nav-icon"
-          onClick={() => handleClick("All")}
-        >
+        <Link to={`/${route}`} className="nav-icon">
           <button className="btn btn-ghost-primary">{buttonState}</button>
         </Link>
       ) : buttonState === "Logout" ? (
