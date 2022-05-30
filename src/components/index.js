@@ -1,3 +1,4 @@
+export { Modal } from "./Modal/Modal";
 export { HorizontalCard } from "./Card/HorizontalCard";
 export { Toast } from "./Toast/Toast";
 export { NoData } from "./NoData/NoData";

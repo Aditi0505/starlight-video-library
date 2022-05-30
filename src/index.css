@@ -12,6 +12,7 @@
 @import url("../src/components/Card/Banner.css");
 @import url("../src/redux/features/watchLater/watchLater.css");
 @import url("../src/components/NoData/NoData.css");
+@import url("../src/components/Modal/Modal.css");
 .light-mode {
   --primary-color: #fefefe;
   --secondary-color: #525252;
@@ -60,7 +61,7 @@
   margin-bottom: 7rem;
 }
 body {
-  font-family: var(--body-font);  
+  font-family: var(--body-font);
 }
 .toastify-container > div {
   font-size: var(--sm-size);
