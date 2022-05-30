@@ -1,6 +1,6 @@
 import { Link, useLocation } from "react-router-dom";
 
-const NoData = () => {
+const NoData = ({ pageInfo }) => {
   const location = useLocation();
   return (
     <div className="flex-column flex-center">
@@ -12,7 +12,7 @@ const NoData = () => {
       />
       {location.pathname !== "/feed" ? (
         <span className="text-md">
-          No Videos in Watch Later.
+          No Videos in {pageInfo}.
           <Link to="/feed" className="page-heading text-sm underlined">
             Explore more videos
           </Link>

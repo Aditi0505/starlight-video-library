@@ -1,0 +1,16 @@
+.modal {
+  height: fit-content;
+  background-color: var(--primary-color);
+  box-shadow: 0 0 0 50vmax #00000080;
+  border-radius: 2rem;
+}
+.modal-content,
+.modal-body {
+  color: var(--accent1);
+}
+.modal-footer-close:hover {
+  color: var(--option);
+}
+.footer-submit {
+  color: var(--disable);
+}

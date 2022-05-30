@@ -4,7 +4,6 @@ import axios from "axios";
 const initialState = {
   playlists: [],
   watchLater: [],
-  history: [],
   likedVideos: [],
   isLoading: false,
 };
@@ -42,6 +41,40 @@ export const removeFromWatchLater = createAsyncThunk(
     }
   }
 );
+export const addToLikedVideo = createAsyncThunk(
+  "likedVideo/addToLikedVideo",
+  async (video, { rejectWithValue }) => {
+    try {
+      const response = await axios.post(
+        "/api/user/likes",
+        { video },
+        {
+          headers: {
+            authorization: localStorage.getItem("login-token"),
+          },
+        }
+      );
+      return response.data;
+    } catch (error) {
+      return rejectWithValue("Cannot add to liked videos right now!");
+    }
+  }
+);
+export const removeFromLikedVideo = createAsyncThunk(
+  "likedVideo/removeFromLikedVideo",
+  async (id, { rejectWithValue }) => {
+    try {
+      const response = await axios.delete(`/api/user/likes/${id}`, {
+        headers: {
+          authorization: localStorage.getItem("login-token"),
+        },
+      });
+      return response.data;
+    } catch (error) {
+      return rejectWithValue("Cannot delete from liked video right now!");
+    }
+  }
+);
 const playlistSlice = createSlice({
   name: "playlist",
   initialState,
@@ -66,6 +99,26 @@ const playlistSlice = createSlice({
     [removeFromWatchLater.fulfilled]: (state, { payload }) => {
       state.watchLater = payload.watchlater;
       state.isLoading = false;
+    },
+    [addToLikedVideo.rejected]: (state) => {
+      state.isLoading = false;
+    },
+    [addToLikedVideo.pending]: (state) => {
+      state.isLoading = true;
+    },
+    [addToLikedVideo.fulfilled]: (state, { payload }) => {
+      state.isLoading = false;
+      state.likedVideos = payload.likes;
+    },
+    [removeFromLikedVideo.rejected]: (state) => {
+      state.isLoading = false;
+    },
+    [removeFromLikedVideo.pending]: (state) => {
+      state.isLoading = true;
+    },
+    [removeFromLikedVideo.fulfilled]: (state, { payload }) => {
+      state.isLoading = false;
+      state.likedVideos = payload.likes;
     },
   },
 });
