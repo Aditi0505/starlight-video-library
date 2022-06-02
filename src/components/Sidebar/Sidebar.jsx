@@ -1,8 +1,9 @@
 import { NavLink } from "react-router-dom";
 
-const Sidebar = () => {
+const Sidebar = (props) => {
+  console.log(props.expand);
   return (
-    <div className="sidebar-wrapper position-fixed">
+    <div className={`sidebar-wrapper position-fixed ${props.expand}`}>
       <ul className="sidebar-list">
         <NavLink
           to="/"

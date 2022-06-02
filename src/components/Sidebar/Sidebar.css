@@ -1,4 +1,5 @@
-.sidebar-wrapper {
+.sidebar-wrapper,
+.sidebar-wrapper-expanded {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -9,7 +10,12 @@
   height: 100vh;
   border-right: 1px solid var(--secondary-color);
 }
-
+.sidebar-wrapper-expanded {
+  width: 30rem;
+  background-color: var(--primary-color);
+  opacity: 1;
+  display: none;
+}
 .sidebar-list {
   list-style: none;
   padding: 1rem;
