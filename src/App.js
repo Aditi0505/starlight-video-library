@@ -19,6 +19,8 @@ import {
   LikedVideo,
   History,
   Playlist,
+  Profile,
+  SinglePlaylist,
 } from "./redux";
 
 const App = () => {
@@ -68,6 +70,22 @@ const App = () => {
           element={
             <RequiresAuth>
               <Playlist />
+            </RequiresAuth>
+          }
+        />
+        <Route
+          path="/profile"
+          element={
+            <RequiresAuth>
+              <Profile />
+            </RequiresAuth>
+          }
+        />
+        <Route
+          path="/playlist/:playlistId"
+          element={
+            <RequiresAuth>
+              <SinglePlaylist />
             </RequiresAuth>
           }
         />
