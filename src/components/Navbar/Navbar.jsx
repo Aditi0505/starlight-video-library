@@ -17,7 +17,6 @@ const NavBar = () => {
     dispatch(toggleTheme(theme));
   };
   const [sidebarOpen, setSidebarOpen] = useState(false);
-  console.log(sidebarOpen);
   return (
     <div>
       <header className="desktop-navigation position-fixed">
