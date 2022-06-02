@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { toast } from "react-toastify";
-import { Banner, Loader, CategoryCard, Sidebar } from "../../../components";
+import { Banner, Loader, CategoryCard } from "../../../components";
 import { getVideoCategories, setCurrentCategory } from "../videos/videoSlice";
 
 const Home = () => {

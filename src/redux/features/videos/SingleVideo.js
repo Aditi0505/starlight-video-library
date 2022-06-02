@@ -11,10 +11,13 @@ import {
   removeFromWatchLater,
   setIsModalOpen,
 } from "../playlist/playlistSlice";
-import { postHistory } from "./videoSlice";
+import { postHistory, setNotes } from "./videoSlice";
 
 const SingleVideo = () => {
-  const { isLoading, history } = useSelector((store) => store.video);
+  const { isLoading, history, videoNotes } = useSelector(
+    (store) => store.video
+  );
+  const { isDisabled } = videoNotes;
   const { videoId } = useParams();
   const dispatch = useDispatch();
   const { watchLater, likedVideos, isModalOpen } = useSelector(
@@ -22,6 +25,7 @@ const SingleVideo = () => {
   );
   const { encodedToken } = useSelector((store) => store.auth);
   const [currentVideo, setCurrentVideo] = useState(null);
+  const [notesInput, setNotesInput] = useState("");
   const { _id, views, title, duration, avatar, description, videoBy, alt } =
     currentVideo ?? {};
   const navigate = useNavigate();
@@ -90,6 +94,19 @@ const SingleVideo = () => {
     } else {
       dispatch(setIsModalOpen(true));
     }
+  };
+  const notesInputHandler = (e) => {
+    setNotesInput(e.target.value);
+  };
+  const saveNotesHandler = () => {
+    dispatch(setNotes({ notes: notesInput, isDisabled: true }));
+  };
+  const editNotesHandler = () => {
+    dispatch(setNotes({ notes: notesInput, isDisabled: false }));
+  };
+  const deleteNotesHandler = () => {
+    setNotesInput("");
+    dispatch(setNotes({ notes: notesInput, isDisabled: false }));
   };
   return (
     <>
@@ -183,6 +200,31 @@ const SingleVideo = () => {
                   </section>
                   <section className="flex-start gap margin-bottom">
                     <div className="ft-regular text-sm">{description}</div>
+                  </section>
+                  <section className="flex-start gap margin-bottom">
+                    <div className="ft-regular text-sm full-width" id="notes">
+                      <textarea
+                        placeholder="Enter notes here"
+                        className="full-width padding-md"
+                        onChange={notesInputHandler}
+                        disabled={isDisabled}
+                        value={notesInput}
+                      />
+                      <div className="flex-center toggle-btn">
+                        <i
+                          className="fas fa-save"
+                          onClick={saveNotesHandler}
+                        ></i>
+                        <i
+                          className="fas fa-edit"
+                          onClick={editNotesHandler}
+                        ></i>
+                        <i
+                          className="fas fa-trash"
+                          onClick={deleteNotesHandler}
+                        ></i>
+                      </div>
+                    </div>
                   </section>
                 </>
               ) : (
