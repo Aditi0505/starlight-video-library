@@ -2,7 +2,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 
-const HorizontalCard = ({ video, removeAction, pageInfo }) => {
+const HorizontalCard = ({ video, removeAction, pageInfo, playlistId }) => {
   const { encodedToken } = useSelector((store) => store.auth);
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -12,6 +12,15 @@ const HorizontalCard = ({ video, removeAction, pageInfo }) => {
     } else {
       dispatch(removeAction(id))
         .then((res) => toast.success(`Video removed from ${pageInfo}!`))
+        .catch((error) => toast.error(error));
+    }
+  };
+  const removePlaylistVideoHandler = (id, currentVideo) => {
+    if (!encodedToken) {
+      navigate("/login");
+    } else {
+      dispatch(removeAction({ id, currentVideo }))
+        .then((res) => toast.success("Video removed from the playlist!"))
         .catch((error) => toast.error(error));
     }
   };
@@ -55,12 +64,21 @@ const HorizontalCard = ({ video, removeAction, pageInfo }) => {
       </div>
       <div className="icons">
         <span className="dismiss flex-center">
-          <button
-            className="card-btn-close"
-            onClick={() => removeHandler(video._id)}
-          >
-            <i className="close fas fa-times-circle"></i>
-          </button>
+          {pageInfo === "Playlist" ? (
+            <button
+              className="card-btn-close"
+              onClick={() => removePlaylistVideoHandler(playlistId, video)}
+            >
+              <i className="close fas fa-times-circle text-sm"></i>
+            </button>
+          ) : (
+            <button
+              className="card-btn-close"
+              onClick={() => removeHandler(video._id)}
+            >
+              <i className="close fas fa-times-circle text-sm"></i>
+            </button>
+          )}
         </span>
       </div>
     </div>
