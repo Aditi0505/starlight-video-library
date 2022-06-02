@@ -1,3 +1,6 @@
+export { SinglePlaylist } from "./features/playlist/SinglePlaylist";
+export { Profile } from "./features/profile/Profile";
+export { Playlist } from "./features/playlist/Playlist";
 export { History } from "./features/history/History";
 export { LikedVideo } from "./features/likedVideos/LikedVideo";
 export { WatchLater } from "./features/watchLater/watchLater";

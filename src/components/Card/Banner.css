@@ -7,3 +7,9 @@
 .relative {
   position: relative;
 }
+.text-card-container {
+  width: 50rem;
+  height: 7.5rem;
+  max-width: 100rem;
+  border-radius: 2rem;
+}
