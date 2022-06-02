@@ -86,16 +86,10 @@ const NavBar = () => {
           )}
         </ul>
       </header>
-      {location.pathname !== "/" &&
-      location.pathname !== "/login" &&
-      location.pathname !== "/signup" ? (
-        sidebarOpen ? (
-          <Sidebar expand={"sidebar-wrapper-expanded bar"} />
-        ) : (
-          <Sidebar expand={"hide"} />
-        )
+      {sidebarOpen && location.pathname !== "/" ? (
+        <Sidebar expand={"sidebar-wrapper-expanded bar"} />
       ) : (
-        ""
+        <Sidebar expand={"hide"} />
       )}
     </div>
   );
