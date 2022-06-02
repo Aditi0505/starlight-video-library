@@ -10,12 +10,16 @@ const NoData = ({ pageInfo }) => {
         loading="lazy"
         alt="No data"
       />
-      {location.pathname !== "/feed" ? (
+      {location.pathname !== "/feed" && location.pathname !== "/playlist" ? (
         <span className="text-md">
           No Videos in {pageInfo}.
           <Link to="/feed" className="page-heading text-sm underlined">
             Explore more videos
           </Link>
+        </span>
+      ) : location.pathname === "/playlist" ? (
+        <span className="text-md">
+          Oh no, No playlist found! Please check later
         </span>
       ) : (
         <span className="text-md">
