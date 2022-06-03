@@ -1,8 +1,10 @@
+import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, NavLink, useLocation } from "react-router-dom";
 import { toggleTheme } from "../../redux/features/auth/authSlice";
 import { setSearchQuery } from "../../redux/features/videos/videoSlice";
 import { Button } from "../index";
+import { Sidebar } from "../Sidebar/Sidebar";
 const NavBar = () => {
   const location = useLocation();
   const { searchQuery } = useSelector((store) => store.video);
@@ -14,15 +16,23 @@ const NavBar = () => {
   const toggleThemeHandler = (theme) => {
     dispatch(toggleTheme(theme));
   };
+  const [sidebarOpen, setSidebarOpen] = useState(false);
   return (
     <div>
       <header className="desktop-navigation position-fixed">
         <nav className="logo-wrapper">
+          <div className="hide nav-logo gap bar">
+            <i
+              className="fas fa-bars nav-icon toggle-btn"
+              onClick={() => setSidebarOpen((prev) => !prev)}
+            ></i>
+          </div>
           <div className="nav-logo">
             <Link to="/" className="site-link">
               <p className="text-lg">StarLight</p>
             </Link>
           </div>
+
           <div className="gap">
             <NavLink
               to="/feed"
@@ -44,7 +54,7 @@ const NavBar = () => {
             onChange={(e) => handleSearchInput(e)}
           />
         )}
-        <ul className="nav-icons">
+        <ul className="nav-icons gap">
           {theme === "light" ? (
             <i
               className="fas fa-sun nav-icon toggle-btn"
@@ -55,6 +65,11 @@ const NavBar = () => {
               className="fas fa-moon nav-icon toggle-btn"
               onClick={() => toggleThemeHandler("dark")}
             ></i>
+          )}
+          {encodedToken && (
+            <Link to="/profile">
+              <i className="fas fa-user nav-icon toggle-btn"></i>
+            </Link>
           )}
           {encodedToken ? (
             <Button buttonState={"Logout"} route="" />
@@ -71,6 +86,11 @@ const NavBar = () => {
           )}
         </ul>
       </header>
+      {sidebarOpen && location.pathname !== "/" ? (
+        <Sidebar expand={"sidebar-wrapper-expanded bar"} />
+      ) : (
+        <Sidebar expand={"hide"} />
+      )}
     </div>
   );
 };

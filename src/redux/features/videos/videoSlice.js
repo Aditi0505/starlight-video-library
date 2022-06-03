@@ -7,6 +7,7 @@ const initialState = {
   currentCategory: null,
   searchQuery: "",
   isLoading: false,
+  videoNotes: { notes: null, isDisabled: false },
 };
 
 export const getVideos = createAsyncThunk(
@@ -113,6 +114,9 @@ const videoSlice = createSlice({
     setSearchQuery: (state, { payload }) => {
       state.searchQuery = payload;
     },
+    setNotes: (state, { payload }) => {
+      state.videoNotes = payload;
+    },
   },
   extraReducers: {
     [getVideos.pending]: (state) => {
@@ -178,5 +182,6 @@ const videoSlice = createSlice({
   },
 });
 
-export const { setCurrentCategory, setSearchQuery } = videoSlice.actions;
+export const { setCurrentCategory, setSearchQuery, setNotes } =
+  videoSlice.actions;
 export default videoSlice.reducer;

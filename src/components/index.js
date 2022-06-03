@@ -1,3 +1,4 @@
+export { PlaylistCard } from "./Card/PlaylistCard";
 export { Modal } from "./Modal/Modal";
 export { HorizontalCard } from "./Card/HorizontalCard";
 export { Toast } from "./Toast/Toast";
@@ -15,3 +16,4 @@ export { Button } from "./Button/Button";
 export { Footer } from "./Footer/Footer";
 export { FooterLink } from "./Footer/FooterLink";
 export { Chip } from "./Chip/Chip";
+export { PlaylistModal } from "./Modal/PlaylistModal";

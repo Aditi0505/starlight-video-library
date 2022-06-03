@@ -70,7 +70,7 @@ const authSlice = createSlice({
     },
     [loginUser.fulfilled]: (state, { payload }) => {
       state.isLoading = false;
-      state.user = payload.user;
+      state.user = payload.foundUser;
       state.encodedToken = payload.encodedToken;
     },
     [signUpUser.pending]: (state) => {
@@ -81,7 +81,7 @@ const authSlice = createSlice({
     },
     [signUpUser.fulfilled]: (state, { payload }) => {
       state.isLoading = false;
-      state.user = payload.user;
+      state.user = payload.foundUser;
       state.encodedToken = payload.encodedToken;
     },
   },

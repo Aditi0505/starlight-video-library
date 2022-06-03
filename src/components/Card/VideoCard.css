@@ -6,3 +6,6 @@
   height: 28rem;
   cursor: pointer;
 }
+.dismiss {
+  height: max-content;
+}
