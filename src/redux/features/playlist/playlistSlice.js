@@ -192,7 +192,7 @@ const playlistSlice = createSlice({
       state.isLoading = false;
     },
     [addtoWatchLater.fulfilled]: (state, { payload }) => {
-      state.watchLater = payload.watchlater;
+      state.watchLater = payload.watchlater.reverse();
       state.isLoading = false;
     },
     [removeFromWatchLater.pending]: (state) => {
@@ -213,7 +213,7 @@ const playlistSlice = createSlice({
     },
     [addToLikedVideo.fulfilled]: (state, { payload }) => {
       state.isLoading = false;
-      state.likedVideos = payload.likes;
+      state.likedVideos = payload.likes.reverse();
     },
     [removeFromLikedVideo.rejected]: (state) => {
       state.isLoading = false;
@@ -263,11 +263,12 @@ const playlistSlice = createSlice({
     },
     [addVideoToPlaylist.fulfilled]: (state, { payload }) => {
       state.isLoading = false;
-      state.playlists = state.playlists.map((playlist) =>
-        playlist._id === payload.playlist._id
-          ? { ...playlist, ...payload.playlist }
-          : playlist
-      );
+      state.playlists = state.playlists
+        .map((playlist) =>
+          playlist._id === payload.playlist._id
+            ? { ...playlist, ...payload.playlist }
+            : playlist
+        )
     },
     [getVideoFromPlaylist.rejected]: (state) => {
       state.isLoading = false;
