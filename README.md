@@ -88,7 +88,7 @@
 ---
 ## How to run your app locally
 
-> Clone the repository on your local machine with the command below in your terminal, and cd into the _afterglow-extension_ folder
+> Clone the repository on your local machine with the command below in your terminal, and cd into the _starlight-video-library_ folder
 
 Clone the project
 
