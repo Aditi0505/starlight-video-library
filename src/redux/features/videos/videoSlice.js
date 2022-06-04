@@ -144,7 +144,7 @@ const videoSlice = createSlice({
     },
     [postHistory.fulfilled]: (state, { payload }) => {
       state.isLoading = false;
-      state.history = payload.history;
+      state.history = payload.history.reverse();
     },
     [postHistory.rejected]: (state) => {
       state.isLoading = false;

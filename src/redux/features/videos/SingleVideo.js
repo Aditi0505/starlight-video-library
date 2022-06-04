@@ -201,7 +201,7 @@ const SingleVideo = () => {
                   <section className="flex-start gap margin-bottom">
                     <div className="ft-regular text-sm">{description}</div>
                   </section>
-                  <section className="flex-start gap margin-bottom">
+                  <section className="flex-start gap notes">
                     <div className="ft-regular text-sm full-width" id="notes">
                       <textarea
                         placeholder="Enter notes here"

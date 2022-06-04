@@ -22,10 +22,12 @@ const NavBar = () => {
       <header className="desktop-navigation position-fixed">
         <nav className="logo-wrapper">
           <div className="hide nav-logo gap bar">
-            <i
-              className="fas fa-bars nav-icon toggle-btn"
-              onClick={() => setSidebarOpen((prev) => !prev)}
-            ></i>
+            {location.pathname !== "/" && (
+              <i
+                className="fas fa-bars nav-icon toggle-btn"
+                onClick={() => setSidebarOpen((prev) => !prev)}
+              ></i>
+            )}
           </div>
           <div className="nav-logo">
             <Link to="/" className="site-link">

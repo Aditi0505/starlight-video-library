@@ -44,6 +44,7 @@ const SinglePlaylist = () => {
                     playlistId={playlistId}
                   />
                 ))
+                .reverse()
             ) : (
               <NoData pageInfo={"Playlist"} />
             )}

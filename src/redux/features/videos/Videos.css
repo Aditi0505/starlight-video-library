@@ -89,3 +89,6 @@
 .fa-check-circle {
   color: var(--accent1);
 }
+.notes {
+  margin-bottom: 7rem;
+}

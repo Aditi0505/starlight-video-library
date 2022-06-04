@@ -68,6 +68,9 @@ body {
   font-size: var(--sm-size);
   font-family: var(--body-font);
 }
+img {
+  object-fit: fill;
+}
 @media screen and (max-width: 35em) {
   html {
     font-size: 10px;
@@ -96,6 +99,9 @@ body {
   }
   .bar {
     display: flex;
+  }
+  .notes {
+    margin-bottom: 0;
   }
 }
 
@@ -127,5 +133,8 @@ body {
   }
   .bar {
     display: flex;
+  }
+  .notes {
+    margin-bottom: 0;
   }
 }
