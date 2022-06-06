@@ -103,6 +103,9 @@ img {
   .notes {
     margin-bottom: 0;
   }
+  .profile {
+    margin-left: 0;
+  }
 }
 
 @media screen and (max-width: 60em) {
@@ -136,5 +139,8 @@ img {
   }
   .notes {
     margin-bottom: 0;
+  }
+  .profile {
+    margin-left: 0;
   }
 }
