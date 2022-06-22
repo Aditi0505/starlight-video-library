@@ -2,7 +2,7 @@ import { FooterLink } from "../";
 
 const Footer = () => {
   return (
-    <footer className="footer padding-xs full-width">
+    <footer className="footer padding-md full-width">
       <div className="flex-center">
         <ul className="nav-icons">
           <FooterLink
