@@ -2,6 +2,7 @@
   flex-direction: column;
   gap: var(--sm-size);
   padding: var(--sm-size);
+  min-height: 100vh;
 }
 
 .video-listing {
@@ -64,18 +65,14 @@
 }
 
 .video-icon-set {
-  width: 28rem;
+  width: 100%;
 }
 
 .inner-icon {
-  width: 12rem;
+  margin-right: 1rem;
 }
 
-.inner-action-icon {
-  width: 29rem;
-}
 .video-actions {
-  width: 60rem;
   cursor: pointer;
 }
 
@@ -91,4 +88,7 @@
 }
 .notes {
   margin-bottom: 7rem;
+}
+.note {
+  cursor: not-allowed;
 }

@@ -141,61 +141,72 @@ const SingleVideo = () => {
                     </div>
                     <div className="flex-spbt gap video-icon">
                       <div className="video-icon-set flex-spbt">
-                        <span className="ft-bolder text-sm inner-icon">
-                          <i className="fas fa-eye"></i>
+                        <span className="ft-bolder text-sm">
+                          <i className="fas fa-eye inner-icon"></i>
                           {views} views
                         </span>
-                        <span className="ft-bolder text-sm inner-icon">
-                          <i className="far fa-hourglass"></i>
+                        <span className="ft-bolder text-sm">
+                          <i className="far fa-hourglass inner-icon"></i>
                           {duration}
                         </span>
+                        <span className="flex-center">
+                          <span className="ft-bolder text-sm video-actions">
+                            {likedVideos.some(
+                              (video) => video._id === videoId
+                            ) ? (
+                              <span
+                                className="ft-bolder text-sm"
+                                onClick={() => unlikeVideoHandler(videoId)}
+                              >
+                                <i className="fas fa-thumbs-up inner-icon"></i>
+                                Liked
+                              </span>
+                            ) : (
+                              <span
+                                className="ft-bolder text-sm"
+                                onClick={() => likedVideoHandler(currentVideo)}
+                              >
+                                <i className="far fa-thumbs-up inner-icon"></i>
+                                Like
+                              </span>
+                            )}
+                          </span>
+                          <span className="ft-bolder text-sm video-actions">
+                            <span
+                              className="ft-bolder text-sm"
+                              onClick={() => saveToPlaylistHandler(videoId)}
+                            >
+                              <i className="far fa-list-alt inner-icon"></i>
+                              <span> Add to PlayList</span>
+                            </span>
+                          </span>
+                          <span className="ft-bolder text-sm inner-icon video-actions">
+                            {watchLater.some(
+                              (video) => video._id === videoId
+                            ) ? (
+                              <span
+                                className="ft-bolder text-sm"
+                                onClick={() =>
+                                  removeFromWatchlaterHandler(videoId)
+                                }
+                              >
+                                <i className="fas fa-check-circle inner-icon"></i>
+                                Watch Later
+                              </span>
+                            ) : (
+                              <span
+                                className="ft-bolder text-sm"
+                                onClick={() =>
+                                  addToWatchlaterHandler(currentVideo)
+                                }
+                              >
+                                <i className="far fa-clock inner-icon"></i>
+                                Watch Later
+                              </span>
+                            )}
+                          </span>
+                        </span>
                       </div>
-                    </div>
-                  </section>
-                  <section className="flex-end">
-                    <div className="flex-center video-actions">
-                      {likedVideos.some((video) => video._id === videoId) ? (
-                        <span
-                          className="ft-bolder text-sm text-right inner-icon"
-                          onClick={() => unlikeVideoHandler(videoId)}
-                        >
-                          <i className="fas fa-thumbs-up"></i>
-                          Liked
-                        </span>
-                      ) : (
-                        <span
-                          className="ft-bolder text-sm text-right inner-icon"
-                          onClick={() => likedVideoHandler(currentVideo)}
-                        >
-                          <i className="far fa-thumbs-up"></i>
-                          Like
-                        </span>
-                      )}
-
-                      <div
-                        className="ft-bolder text-sm text-right inner-action-icon"
-                        onClick={() => saveToPlaylistHandler(videoId)}
-                      >
-                        <i className="far fa-list-alt"></i>
-                        <span> Add to PlayList</span>
-                      </div>
-                      {watchLater.some((video) => video._id === videoId) ? (
-                        <span
-                          className="ft-bolder text-sm text-right inner-action-icon"
-                          onClick={() => removeFromWatchlaterHandler(videoId)}
-                        >
-                          <i className="fas fa-check-circle"></i>
-                          Watch Later
-                        </span>
-                      ) : (
-                        <span
-                          className="ft-bolder text-sm text-right inner-action-icon"
-                          onClick={() => addToWatchlaterHandler(currentVideo)}
-                        >
-                          <i className="far fa-clock"></i>
-                          Watch Later
-                        </span>
-                      )}
                     </div>
                   </section>
                   <section className="flex-start gap margin-bottom">
@@ -205,21 +216,26 @@ const SingleVideo = () => {
                     <div className="ft-regular text-sm full-width" id="notes">
                       <textarea
                         placeholder="Enter notes here"
-                        className="full-width padding-md"
+                        className={`full-width padding-md ${
+                          isDisabled ? "note" : ""
+                        }`}
                         onChange={notesInputHandler}
                         disabled={isDisabled}
                         value={notesInput}
                       />
                       <div className="flex-center toggle-btn">
                         <i
+                          title="Save"
                           className="fas fa-save"
                           onClick={saveNotesHandler}
                         ></i>
                         <i
+                          title="Edit"
                           className="fas fa-edit"
                           onClick={editNotesHandler}
                         ></i>
                         <i
+                          title="delete"
                           className="fas fa-trash"
                           onClick={deleteNotesHandler}
                         ></i>
