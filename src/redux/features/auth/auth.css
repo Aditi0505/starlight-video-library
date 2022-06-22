@@ -33,3 +33,9 @@
 .auth-wrapper {
   height: 100vh;
 }
+.underlined {
+  text-decoration: underline;
+}
+.auth-button {
+  width: 80%;
+}

@@ -163,7 +163,7 @@ const Signup = () => {
               Create New Account
             </button>
             <div>
-              <Link to="/login" className="text text-sm ft-light">
+              <Link to="/login" className="text text-sm ft-light underlined">
                 Already have an account
               </Link>
             </div>
