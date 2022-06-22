@@ -9,3 +9,13 @@
 .dismiss {
   height: max-content;
 }
+.card-badge-text {
+  border-radius: 2rem;
+}
+.category-card {
+  border-radius: 2rem;
+  border: none;
+}
+.card {
+  border-radius: 1.5rem;
+}

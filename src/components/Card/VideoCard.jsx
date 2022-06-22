@@ -44,8 +44,8 @@ const VideoCard = ({ videoDetails }) => {
         </div>
         <div className="card-body">
           <div className="card-desc ft-bolder text-left">{title}</div>
-          <div className="card-desc text-left">
-            {videoBy} | {views}
+          <div className="card-desc text-left flex-center icon-gap">
+            {videoBy} | <i className="fas fa-eye"></i> {views}
           </div>
         </div>
       </div>
@@ -65,7 +65,11 @@ const VideoCard = ({ videoDetails }) => {
             Add To Watch Later
           </button>
         )}
-        <span className="card-badge-text">{duration}</span>
+        <span className="card-badge-text">
+          {" "}
+          <i className="far fa-hourglass inner-icon"></i>
+          {duration}
+        </span>
       </div>
     </div>
   );
