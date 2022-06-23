@@ -116,6 +116,10 @@ img {
   .profile {
     margin-left: 0;
   }
+  .active,
+  .dark-active {
+    visibility: hidden;
+  }
 }
 @media screen and (max-width: 36em) {
   html {
@@ -160,5 +164,9 @@ img {
   }
   .banner-heading {
     margin-top: 6rem;
+  }
+  .active,
+  .dark-active {
+    visibility: hidden;
   }
 }
