@@ -62,10 +62,12 @@ const Videos = () => {
               matchCategory={currentCategory}
               handleClick={clickHandler}
             />
-          ))}
-          <button className="btn btn-link" onClick={resetCategoryHandler}>
-            Clear
-          </button>
+          ))}{" "}
+          {currentCategory !== "All" && (
+            <button className="btn btn-link" onClick={resetCategoryHandler}>
+              Clear
+            </button>
+          )}
         </div>
         <>
           <div className="display-screen">
