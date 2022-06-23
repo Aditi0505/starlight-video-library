@@ -2,8 +2,8 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
 
 const initialState = {
-  encodedToken: null,
-  user: null,
+  encodedToken: localStorage.getItem("login-token") || null,
+  user: localStorage.getItem("user") || null,
   theme: localStorage.getItem("theme") || "light",
   isLoading: true,
 };
@@ -55,6 +55,7 @@ const authSlice = createSlice({
       state.encodedToken = null;
       localStorage.removeItem("login-token");
       localStorage.removeItem("signup-token");
+      localStorage.removeItem("user");
     },
     toggleTheme: (state) => {
       state.theme = state.theme === "light" ? "dark" : "light";
