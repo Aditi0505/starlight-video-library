@@ -1,7 +1,10 @@
 * {
   overflow-x: hidden;
 }
-
+.home {
+  min-height: 100vh;
+  position: relative;
+}
 .img-content {
   height: 70vh;
   width: 100vw;
@@ -20,4 +23,8 @@
 
 .card {
   margin-bottom: 5rem;
+}
+
+.icon-gap {
+  gap: 1rem;
 }

@@ -11,7 +11,11 @@ const HorizontalCard = ({ video, removeAction, pageInfo, playlistId }) => {
       navigate("/login");
     } else {
       dispatch(removeAction(id))
-        .then((res) => toast.success(`Video removed from ${pageInfo}!`))
+        .then((res) =>
+          res.error
+            ? toast.error(res.payload)
+            : toast.success(`Video removed from ${pageInfo}!`)
+        )
         .catch((error) => toast.error(error));
     }
   };
@@ -20,7 +24,11 @@ const HorizontalCard = ({ video, removeAction, pageInfo, playlistId }) => {
       navigate("/login");
     } else {
       dispatch(removeAction({ id, currentVideo }))
-        .then((res) => toast.success("Video removed from the playlist!"))
+        .then((res) =>
+          res.error
+            ? toast.error(res.payload)
+            : toast.success("Video removed from the playlist!")
+        )
         .catch((error) => toast.error(error));
     }
   };

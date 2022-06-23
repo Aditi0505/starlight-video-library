@@ -7,18 +7,17 @@ import { loginUser } from "../auth/authSlice";
 import { toast } from "react-toastify";
 const Login = () => {
   setTitle("StarLight | Login");
-  const { encodedToken } = useSelector((store) => store.auth);
+  const { encodedToken, user } = useSelector((store) => store.auth);
   const navigate = useNavigate();
   const location = useLocation();
   const dispatch = useDispatch();
   const [userName, setUserName] = useState("");
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
-
   useEffect(() => {
     localStorage.setItem("login-token", encodedToken);
-  }, [encodedToken]);
-
+    localStorage.setItem("user", JSON.stringify(user));
+  }, [encodedToken, user]);
   const showPasswordHandler = () => {
     setShowPassword((prev) => !prev);
   };
@@ -104,7 +103,7 @@ const Login = () => {
                   value={password}
                 />
                 <i
-                  className="fa fa-eye showPassword"
+                  className="fa fa-eye showLoginPassword"
                   onClick={showPasswordHandler}
                 ></i>
               </div>
@@ -118,27 +117,27 @@ const Login = () => {
                   value={password}
                 />
                 <i
-                  className="fa fa-eye showPassword"
+                  className="fa fa-eye showLoginPassword"
                   onClick={showPasswordHandler}
                 ></i>
               </div>
             )}
             <button
               type="button"
-              className="btn btn-outline-primary margin-tb-sm"
-              onClick={guestLoginHandler}
-            >
-              Login- Guest Account
-            </button>
-            <button
-              type="button"
-              className="btn btn-primary margin-tb-sm"
+              className="btn btn-primary margin-tb-sm auth-button"
               onClick={loginHandler}
             >
               Login To Your Account
             </button>
+            <button
+              type="button"
+              className="btn btn-outline-primary margin-tb-sm auth-button"
+              onClick={guestLoginHandler}
+            >
+              Login- Guest Account
+            </button>
             <div>
-              <Link to="/signup" className="text text-sm ft-light">
+              <Link to="/signup" className="text text-sm ft-light underlined">
                 Create New Account
               </Link>
             </div>

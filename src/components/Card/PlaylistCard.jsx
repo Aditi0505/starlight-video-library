@@ -7,7 +7,11 @@ const PlaylistCard = ({ playlist }) => {
   const dispatch = useDispatch();
   const removePlaylistHandler = (id) => {
     dispatch(deletePlaylist(id))
-      .then((res) => toast.success(`Playlist removed!`))
+      .then((res) =>
+        res.error
+          ? toast.error(res.payload)
+          : toast.success(`Playlist removed!`)
+      )
       .catch((error) => toast.error(error));
   };
   return (

@@ -11,15 +11,14 @@
 
 .sign-up,
 .login {
-  margin-top: 3rem;
+  margin-top: 10rem;
   margin-bottom: 0;
-  height: 100vh;
 }
 
 .showPassword {
   position: absolute;
   right: 2rem;
-  top: 5.5rem;
+  top: 5rem;
   cursor: pointer;
 }
 .passwordBox {
@@ -30,6 +29,16 @@
   flex-wrap: wrap;
   gap: var(--sm-size);
 }
-.auth-wrapper {
-  height: 100vh;
+
+.underlined {
+  text-decoration: underline;
+}
+.auth-button {
+  width: 80%;
+}
+.showLoginPassword {
+  position: absolute;
+  right: 2rem;
+  top: 5.5rem;
+  cursor: pointer;
 }

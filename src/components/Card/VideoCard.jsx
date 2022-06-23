@@ -15,7 +15,11 @@ const VideoCard = ({ videoDetails }) => {
       navigate("/login");
     } else {
       dispatch(addtoWatchLater(videoDetails))
-        .then((res) => toast.success("Video added to Watch Later!"))
+        .then((res) =>
+          res.error
+            ? toast.error(res.payload)
+            : toast.success("Video added to Watch Later!")
+        )
         .catch((error) => toast.error(error));
     }
   };
@@ -24,7 +28,11 @@ const VideoCard = ({ videoDetails }) => {
       navigate("/login");
     } else {
       dispatch(removeFromWatchLater(id))
-        .then((res) => toast.success("Video removed from Watch Later!"))
+        .then((res) =>
+          res.error
+            ? toast.error(res.payload)
+            : toast.success("Video removed from Watch Later!")
+        )
         .catch((error) => toast.error(error));
     }
   };
@@ -44,8 +52,8 @@ const VideoCard = ({ videoDetails }) => {
         </div>
         <div className="card-body">
           <div className="card-desc ft-bolder text-left">{title}</div>
-          <div className="card-desc text-left">
-            {videoBy} | {views}
+          <div className="card-desc text-left flex-center icon-gap">
+            {videoBy} | <i className="fas fa-eye"></i> {views}
           </div>
         </div>
       </div>
@@ -65,7 +73,11 @@ const VideoCard = ({ videoDetails }) => {
             Add To Watch Later
           </button>
         )}
-        <span className="card-badge-text">{duration}</span>
+        <span className="card-badge-text">
+          {" "}
+          <i className="far fa-hourglass inner-icon"></i>
+          {duration}
+        </span>
       </div>
     </div>
   );

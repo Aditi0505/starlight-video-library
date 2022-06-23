@@ -2,11 +2,13 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { toast } from "react-toastify";
 import { Banner, Loader, CategoryCard } from "../../../components";
+import { setTitle } from "../../../utils";
 import { getVideoCategories, setCurrentCategory } from "../videos/videoSlice";
 
 const Home = () => {
   const { categories, isLoading } = useSelector((store) => store.video);
   const dispatch = useDispatch();
+  setTitle("StarLight | Home");
   useEffect(() => {
     const data = dispatch(getVideoCategories());
     data.unwrap().catch((error) => toast.error(error));
@@ -15,7 +17,7 @@ const Home = () => {
     dispatch(setCurrentCategory(category));
   };
   return (
-    <div className="full-height">
+    <div className="home">
       <Banner />
       <h2 className="padding-sm">Categories</h2>
       <div className="flex-center padding-sm category-card">

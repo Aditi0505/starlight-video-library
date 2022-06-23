@@ -8,7 +8,7 @@ const Banner = () => {
     dispatch(setCurrentCategory(category));
   };
   return (
-    <div className="relative">
+    <div className="relative ">
       <img
         src="/assets/images/vinyl.jpg"
         alt="video-banner"
@@ -17,7 +17,7 @@ const Banner = () => {
       />
       <div className="flex-column overlay gap banner-heading">
         <h1>TAYLOR SWIFT: All Too Well</h1>
-        <p className="text-lg ft-bolder">Watch the latest Video now</p>
+        <p className="text-lg ft-bolder">Watch the latest videos now</p>
         <div>
           <ul className="nav-icons">
             <Button
