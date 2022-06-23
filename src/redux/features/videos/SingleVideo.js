@@ -11,13 +11,12 @@ import {
   removeFromWatchLater,
   setIsModalOpen,
 } from "../playlist/playlistSlice";
-import { postHistory, setNotes } from "./videoSlice";
-
+import { deleteNotes, editNotes, postHistory, setNotes } from "./videoSlice";
+import { v4 as uuid } from "uuid";
 const SingleVideo = () => {
   const { isLoading, history, videoNotes } = useSelector(
     (store) => store.video
   );
-  const { isDisabled } = videoNotes;
   const { videoId } = useParams();
   const dispatch = useDispatch();
   const { watchLater, likedVideos, isModalOpen } = useSelector(
@@ -26,6 +25,7 @@ const SingleVideo = () => {
   const { encodedToken } = useSelector((store) => store.auth);
   const [currentVideo, setCurrentVideo] = useState(null);
   const [notesInput, setNotesInput] = useState("");
+  const [toEdit, setToEdit] = useState(null);
   const { _id, views, title, duration, avatar, description, videoBy, alt } =
     currentVideo ?? {};
   const navigate = useNavigate();
@@ -39,7 +39,6 @@ const SingleVideo = () => {
       }
     })();
   }, [videoId]);
-
   useEffect(() => {
     if (
       videoId &&
@@ -50,7 +49,6 @@ const SingleVideo = () => {
       dispatch(postHistory(currentVideo));
     }
   }, [encodedToken, currentVideo, dispatch, history, videoId]);
-
   const removeFromWatchlaterHandler = (id) => {
     if (!encodedToken) {
       navigate("/login");
@@ -115,14 +113,32 @@ const SingleVideo = () => {
     setNotesInput(e.target.value);
   };
   const saveNotesHandler = () => {
-    dispatch(setNotes({ notes: notesInput, isDisabled: true }));
+    setNotesInput("");
+    dispatch(
+      setNotes({
+        notes: notesInput,
+        notesFor: _id,
+        noteId: uuid(),
+      })
+    );
   };
   const editNotesHandler = () => {
-    dispatch(setNotes({ notes: notesInput, isDisabled: false }));
-  };
-  const deleteNotesHandler = () => {
+    dispatch(
+      editNotes({
+        notes: notesInput,
+        noteId: toEdit,
+      })
+    );
     setNotesInput("");
-    dispatch(setNotes({ notes: notesInput, isDisabled: false }));
+    setToEdit(null);
+  };
+  const setToEditHandler = (note) => {
+    setToEdit(note.noteId);
+    setNotesInput(note.notes);
+  };
+  const deleteNotesHandler = (note) => {
+    setNotesInput("");
+    dispatch(deleteNotes({ notes: notesInput, noteId: note.noteId }));
   };
   return (
     <>
@@ -232,30 +248,51 @@ const SingleVideo = () => {
                     <div className="ft-regular text-sm full-width" id="notes">
                       <textarea
                         placeholder="Enter notes here"
-                        className={`full-width padding-md ${
-                          isDisabled ? "note" : ""
-                        }`}
+                        className={`full-width padding-md`}
                         onChange={notesInputHandler}
-                        disabled={isDisabled}
                         value={notesInput}
                       />
                       <div className="flex-center toggle-btn">
-                        <i
-                          title="Save"
-                          className="fas fa-save"
-                          onClick={saveNotesHandler}
-                        ></i>
-                        <i
-                          title="Edit"
-                          className="fas fa-edit"
-                          onClick={editNotesHandler}
-                        ></i>
-                        <i
-                          title="delete"
-                          className="fas fa-trash"
-                          onClick={deleteNotesHandler}
-                        ></i>
+                        {toEdit ? (
+                          <i
+                            title="Edit"
+                            className="fas fa-edit"
+                            onClick={() => editNotesHandler()}
+                          ></i>
+                        ) : (
+                          <i
+                            title="Save"
+                            className="fas fa-save"
+                            onClick={saveNotesHandler}
+                          ></i>
+                        )}
                       </div>
+                    </div>
+                  </section>
+                  <section className="flex-start gap notes">
+                    <div className="ft-regular text-sm full-width" id="notes">
+                      {videoNotes.map(
+                        (note) =>
+                          note.notesFor === _id && (
+                            <div key={note.noteId}>
+                              <div className="flex-center toggle-btn">
+                                <p className="ft-regular text-sm full-width">
+                                  {note.notes}
+                                </p>
+                                <i
+                                  title="Edit"
+                                  className="fas fa-edit"
+                                  onClick={() => setToEditHandler(note)}
+                                ></i>
+                                <i
+                                  title="delete"
+                                  className="fas fa-trash"
+                                  onClick={() => deleteNotesHandler(note)}
+                                ></i>
+                              </div>
+                            </div>
+                          )
+                      )}
                     </div>
                   </section>
                 </>

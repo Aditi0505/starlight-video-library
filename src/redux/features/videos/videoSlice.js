@@ -7,7 +7,7 @@ const initialState = {
   currentCategory: null,
   searchQuery: "",
   isLoading: false,
-  videoNotes: { notes: null, isDisabled: false },
+  videoNotes: [],
 };
 
 export const getVideos = createAsyncThunk(
@@ -115,7 +115,19 @@ const videoSlice = createSlice({
       state.searchQuery = payload;
     },
     setNotes: (state, { payload }) => {
-      state.videoNotes = payload;
+      state.videoNotes = [...state.videoNotes, payload];
+    },
+    editNotes: (state, { payload }) => {
+      state.videoNotes = state.videoNotes.map((note) =>
+        note.noteId === payload.noteId
+          ? { ...note, notes: payload.notes }
+          : note
+      );
+    },
+    deleteNotes: (state, { payload }) => {
+      state.videoNotes = state.videoNotes.filter(
+        (note) => note.noteId !== payload.noteId
+      );
     },
   },
   extraReducers: {
@@ -182,6 +194,11 @@ const videoSlice = createSlice({
   },
 });
 
-export const { setCurrentCategory, setSearchQuery, setNotes } =
-  videoSlice.actions;
+export const {
+  setCurrentCategory,
+  setSearchQuery,
+  setNotes,
+  editNotes,
+  deleteNotes,
+} = videoSlice.actions;
 export default videoSlice.reducer;
