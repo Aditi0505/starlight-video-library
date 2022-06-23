@@ -119,7 +119,7 @@ img {
 }
 @media screen and (max-width: 36em) {
   html {
-    font-size: 30%;
+    font-size: 34%;
   }
   .desktop-navigation {
     height: 10vh;
@@ -159,6 +159,6 @@ img {
     margin-top: calc(100vh - 90vh);
   }
   .banner-heading {
-    margin-top: 12rem;
+    margin-top: 6rem;
   }
 }
