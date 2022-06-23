@@ -56,7 +56,11 @@ const SingleVideo = () => {
       navigate("/login");
     } else {
       dispatch(removeFromWatchLater(id))
-        .then((res) => toast.success("Video removed from Watch Later!"))
+        .then((res) =>
+          res.error
+            ? toast.error(res.payload)
+            : toast.success("Video removed from Watch Later!")
+        )
         .catch((error) => toast.error(error));
     }
   };
@@ -65,7 +69,11 @@ const SingleVideo = () => {
       navigate("/login");
     } else {
       dispatch(addtoWatchLater(videoDetails))
-        .then((res) => toast.success("Video added to Watch Later!"))
+        .then((res) =>
+          res.error
+            ? toast.error(res.payload)
+            : toast.success("Video added to Watch Later!")
+        )
         .catch((error) => toast.error(error));
     }
   };
@@ -74,7 +82,11 @@ const SingleVideo = () => {
       navigate("/login");
     } else {
       dispatch(addToLikedVideo(videoDetails))
-        .then((res) => toast.success("Video added to Liked Videos!"))
+        .then((res) =>
+          res.error
+            ? toast.error(res.payload)
+            : toast.success("Video added to Liked Videos!")
+        )
         .catch((error) => toast.error(error));
     }
   };
@@ -83,7 +95,11 @@ const SingleVideo = () => {
       navigate("/login");
     } else {
       dispatch(removeFromLikedVideo(id))
-        .then((res) => toast.success("Video removed from Liked Videos!"))
+        .then((res) =>
+          res.error
+            ? toast.error(res.payload)
+            : toast.success("Video removed from Liked Videos!")
+        )
         .catch((error) => toast.error(error));
     }
   };

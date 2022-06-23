@@ -263,12 +263,11 @@ const playlistSlice = createSlice({
     },
     [addVideoToPlaylist.fulfilled]: (state, { payload }) => {
       state.isLoading = false;
-      state.playlists = state.playlists
-        .map((playlist) =>
-          playlist._id === payload.playlist._id
-            ? { ...playlist, ...payload.playlist }
-            : playlist
-        )
+      state.playlists = state.playlists.map((playlist) =>
+        playlist._id === payload.playlist._id
+          ? { ...playlist, ...payload.playlist }
+          : playlist
+      );
     },
     [getVideoFromPlaylist.rejected]: (state) => {
       state.isLoading = false;
