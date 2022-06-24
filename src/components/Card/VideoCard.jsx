@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from "react-redux";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import {
   addtoWatchLater,
@@ -12,7 +12,7 @@ const VideoCard = ({ videoDetails }) => {
   const navigate = useNavigate();
   const addToWatchlaterHandler = (videoDetails) => {
     if (!encodedToken) {
-      navigate("/login");
+      navigate("/login", { state: { from: location } }, { replace: true });
     } else {
       dispatch(addtoWatchLater(videoDetails))
         .then((res) =>
@@ -37,6 +37,7 @@ const VideoCard = ({ videoDetails }) => {
     }
   };
   const { watchLater } = useSelector((store) => store.playlist);
+  const location = useLocation();
   return (
     <div className="card">
       <div className="card-inner-container">

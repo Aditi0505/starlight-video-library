@@ -1,7 +1,7 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useNavigate, useParams } from "react-router-dom";
+import { useLocation, useNavigate, useParams } from "react-router-dom";
 import { toast } from "react-toastify";
 import { Loader, PlaylistModal, Sidebar } from "../../../components";
 import {
@@ -64,7 +64,7 @@ const SingleVideo = () => {
   };
   const addToWatchlaterHandler = (videoDetails) => {
     if (!encodedToken) {
-      navigate("/login");
+      navigate("/login", { state: { from: location } }, { replace: true });
     } else {
       dispatch(addtoWatchLater(videoDetails))
         .then((res) =>
@@ -77,7 +77,7 @@ const SingleVideo = () => {
   };
   const likedVideoHandler = (videoDetails) => {
     if (!encodedToken) {
-      navigate("/login");
+      navigate("/login", { state: { from: location } }, { replace: true });
     } else {
       dispatch(addToLikedVideo(videoDetails))
         .then((res) =>
@@ -104,7 +104,7 @@ const SingleVideo = () => {
 
   const saveToPlaylistHandler = (id) => {
     if (!encodedToken) {
-      navigate("/login");
+      navigate("/login", { state: { from: location } }, { replace: true });
     } else {
       dispatch(setIsModalOpen(true));
     }
@@ -140,6 +140,7 @@ const SingleVideo = () => {
     setNotesInput("");
     dispatch(deleteNotes({ notes: notesInput, noteId: note.noteId }));
   };
+  const location = useLocation();
   return (
     <>
       {isModalOpen ? (
